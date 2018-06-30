@@ -2,9 +2,12 @@ from datetime import datetime
 
 from django.db import models
 
+from organization.models import CourseOrg
+
 
 # Course basic model
 class Course(models.Model):
+    course_org = models.ForeignKey(CourseOrg, verbose_name="course_organization", null=True, blank="True")
     name = models.CharField(max_length=50, verbose_name="course_name")
     desc = models.CharField(max_length=300, verbose_name="course_desc")
     detail = models.TextField(verbose_name="course_detail")
@@ -12,7 +15,7 @@ class Course(models.Model):
                               choices=(
                                   ("entry", "entry_level"), ("intermediate", "mid_level"),
                                   ("advanced", "advanced_level")),
-                              max_length=2)
+                              max_length=20)
     learn_time = models.IntegerField(default=0, verbose_name="learning_time")
     students_num = models.IntegerField(default=0, verbose_name="students_num")
     fav_num = models.IntegerField(default=0, verbose_name="fav_num")

@@ -33,7 +33,7 @@ class CourseComments(models.Model):
 class UserFavorite(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name="user")
     fav_id = models.IntegerField(default=0, verbose_name="fav_id")
-    fav_type = models.IntegerField(choices=((1, "Course"), (2, "Organization"), (3, "Teacher")),
+    fav_type = models.IntegerField(choices=((1, "Course"), (2, "Organization"), (3, "Teacher")), default=1,
                                    verbose_name="fav_type")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="add_time")
 

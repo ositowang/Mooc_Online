@@ -14,10 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
 from django.views.generic import TemplateView
+from django.views.static import serve
+
 import xadmin
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from organization.views import OrgView
+from Mooc_Online.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -29,4 +32,11 @@ urlpatterns = [
     url(r'^forget/$', ForgetPwdView.as_view(), name="forget_password"),
     url(r'^reset/(?P<reset_code>.*)/$', ResetView.as_view(), name="reset_password"),
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_password"),
+
+    # Organization Url Configuration
+    url(r'^org/', include('organization.urls', namespace="organization")),
+
+    # Configure the uploaded files path url
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT})
+
 ]

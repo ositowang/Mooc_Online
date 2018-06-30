@@ -12,6 +12,9 @@ class CityDict(models.Model):
         verbose_name = "city"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class CourseOrg(models.Model):
     name = models.CharField(max_length=50, verbose_name="organization_name")
@@ -21,11 +24,20 @@ class CourseOrg(models.Model):
     image = models.ImageField(upload_to="org/%Y/%m", verbose_name="organization_cover_image")
     address = models.CharField(max_length=150, verbose_name="organization_address")
     city = models.ForeignKey(CityDict, verbose_name="organization_city")
+    category = models.CharField(max_length=20, verbose_name="org_category", default="company",
+                                choices=(
+                                    ("company", "Company"), ("university", "University"), ("individual", "Individual")))
+    student_num = models.IntegerField(default=0, verbose_name="student_num")
+    course_num = models.IntegerField(default=0, verbose_name="course_num")
+
     add_time = models.DateTimeField(default=datetime.now)
 
     class Meta:
         verbose_name = "course_organization"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class Teacher(models.Model):
@@ -38,7 +50,11 @@ class Teacher(models.Model):
     click_num = models.IntegerField(default=0, verbose_name="click_num")
     fav_num = models.IntegerField(default=0, verbose_name="fav_num")
     add_time = models.DateTimeField(default=datetime.now)
+    image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="teacher_image", max_length=100,default="")
 
     class Meta:
         verbose_name = "teacher"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

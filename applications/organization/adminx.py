@@ -6,9 +6,9 @@ from .models import CourseOrg, CityDict, Teacher
 
 
 class CourseOrgAdmin(object):
-    list_display = ["name", "desc", "click_num", "fav_num", "image", "address", "city", "add_time"]
+    list_display = ["name", "desc", "click_num", "fav_num", "image", "address", "city", "add_time", "category"]
     search_fields = ["name", "click_num", "fav_num", "address", "city"]
-    list_filter = ["name", "click_num", "fav_num", "address", "city", "add_time"]
+    list_filter = ["name", "click_num", "fav_num", "address", "city", "add_time", "category"]
 
 
 class CityDictAdmin(object):
@@ -19,10 +19,11 @@ class CityDictAdmin(object):
 
 class TeacherAdmin(object):
     list_display = ["org", "name", "work_years", "company", "work_position", "advantages", "click_num", "fav_num",
-                    "add_time"]
-    search_fields = ["org", "name", "work_years", "company", "work_position", "advantages", "click_num", "fav_num"]
+                    "add_time", "teacher_image"]
+    search_fields = ["org", "name", "work_years", "company", "work_position", "advantages", "click_num", "fav_num",
+                     "category"]
     list_filter = ["org", "name", "work_years", "company", "work_position", "advantages", "click_num", "fav_num",
-                   "add_time"]
+                   "add_time", "teacher_image"]
 
 
 xadmin.site.register(CourseOrg, CourseOrgAdmin)
