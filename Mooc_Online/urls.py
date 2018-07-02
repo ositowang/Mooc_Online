@@ -36,6 +36,9 @@ urlpatterns = [
     # Organization Url Configuration
     url(r'^org/', include('organization.urls', namespace="organization")),
 
+    # Course Url Configuration
+    url(r'^course/', include('course.urls', namespace="course")),
+
     # Configure the uploaded files path url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT})
 
