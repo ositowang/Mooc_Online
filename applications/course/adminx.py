@@ -6,9 +6,10 @@ from .models import Course, Chapter, Video, CourseResource
 
 
 class CourseAdmin(object):
-    list_display = ["name", "degree", "learn_time", "students_num", "fav_num", "image", "click_num", "add_time"]
-    search_fields = ["name", "degree", "learn_time", "students_num", "fav_num", "image", "click_num"]
-    list_filter = ["name", "degree", "learn_time", "students_num", "fav_num", "click_num", "add_time"]
+    list_display = ["name", "degree", "learn_time", "students_num", "fav_num", "image", "click_num", "add_time", "tag",
+                    "teacher"]
+    search_fields = ["name", "degree", "learn_time", "students_num", "fav_num", "image", "click_num", "tag", "teacher"]
+    list_filter = ["name", "degree", "learn_time", "students_num", "fav_num", "click_num", "add_time", "tag", "teacher"]
 
 
 class ChapterAdmin(object):
@@ -18,9 +19,9 @@ class ChapterAdmin(object):
 
 
 class VideoAdmin(object):
-    list_display = ["chapter", "name", "add_time"]
-    search_fields = ["chapter", "name"]
-    list_filter = ["chapter__name", "name", "add_time"]
+    list_display = ["chapter", "name", "add_time", "url", "video_duration"]
+    search_fields = ["chapter", "name", "video_link"]
+    list_filter = ["chapter__name", "name", "add_time", "url", "video_duration"]
 
 
 class CourseResourceAdmin(object):

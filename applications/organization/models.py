@@ -36,6 +36,13 @@ class CourseOrg(models.Model):
         verbose_name = "course_organization"
         verbose_name_plural = verbose_name
 
+    def get_teacher_num(self):
+        """
+        count the teacher numbers that belong to the organization
+        :return: int teacher numbers
+        """
+        return self.teacher_set.all().count()
+
     def __str__(self):
         return self.name
 
@@ -50,7 +57,7 @@ class Teacher(models.Model):
     click_num = models.IntegerField(default=0, verbose_name="click_num")
     fav_num = models.IntegerField(default=0, verbose_name="fav_num")
     add_time = models.DateTimeField(default=datetime.now)
-    image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="teacher_image", max_length=100,default="")
+    image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="teacher_image", max_length=100, default="")
 
     class Meta:
         verbose_name = "teacher"
