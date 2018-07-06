@@ -3,7 +3,8 @@ __date__ = '2018/6/24 16:01'
 
 from django.conf.urls import url, include
 
-from .views import OrgView, AddUserQuestionView, OrgHomeView, OrgCourseView, OrgDescView, OrgTeacherView, AddFavView
+from .views import OrgView, AddUserQuestionView, OrgHomeView, OrgCourseView, OrgDescView, OrgTeacherView, AddFavView, \
+    TeacherListView, TeacherDetailView
 
 urlpatterns = [
     # example page for showing the inherited template
@@ -15,5 +16,9 @@ urlpatterns = [
     url(r'^teacher/(?P<org_id>\d+)/$', OrgTeacherView.as_view(), name="org_teacher"),
     # Add Favorite and Cancel Favorite
     url(r'^add_fav/$', AddFavView.as_view(), name="add_fav"),
+    # Instructor List
+    url(r'^teacher/list/$', TeacherListView.as_view(), name="teacher_list"),
+    # Instructor detail
+    url(r'^teacher/detail/(?P<teacher_id>\d+)/$', TeacherDetailView.as_view(), name="teacher_detail"),
 
 ]

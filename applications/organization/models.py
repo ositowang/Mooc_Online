@@ -56,6 +56,7 @@ class Teacher(models.Model):
     advantages = models.CharField(max_length=50, verbose_name="teacher_advantage")
     click_num = models.IntegerField(default=0, verbose_name="click_num")
     fav_num = models.IntegerField(default=0, verbose_name="fav_num")
+    age = models.IntegerField(default=0, verbose_name="teacher_age")
     add_time = models.DateTimeField(default=datetime.now)
     image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="teacher_image", max_length=100, default="")
 
