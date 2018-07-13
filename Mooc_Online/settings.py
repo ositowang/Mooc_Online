@@ -25,9 +25,9 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_applications'))
 SECRET_KEY = '69t6j%2%v@8n7@x#(yyybz**xp8l3+@+dngw1(9g&wq+liwo*@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Overide the authentication
 AUTHENTICATION_BACKENDS = (
@@ -150,3 +150,5 @@ EMAIL_FROM = "projectmooc@126.com"
 # Media File Root
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

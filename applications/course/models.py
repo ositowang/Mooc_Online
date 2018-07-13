@@ -26,6 +26,7 @@ class Course(models.Model):
     tag = models.CharField(default="", verbose_name="course_tag", max_length=10)
     youneed_know = models.CharField(max_length=300, default="", verbose_name="course_needknow")
     teacher_tell = models.CharField(max_length=300, default="", verbose_name="teacher_tell")
+    is_banner = models.BooleanField(default=False,verbose_name="is_banner")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="add_time")
 
     class Meta:

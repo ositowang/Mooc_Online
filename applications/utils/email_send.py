@@ -7,11 +7,15 @@ from django.core.mail import send_mail
 from users.models import EmailVerifyRecord
 from Mooc_Online.settings import EMAIL_FROM
 
+
 # Send the email with link for register and forget password
 def send_register_email(email, send_type='register'):
     email_record = EmailVerifyRecord()
     # create the random verify code
-    random_str = generate_random_str(16)
+    if send_type == "update":
+        random_str = generate_random_str(4)
+    else:
+        random_str = generate_random_str(16)
     # Assign values to the model
     email_record.code = random_str
     email_record.email = email
@@ -35,8 +39,12 @@ def send_register_email(email, send_type='register'):
         send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
         if send_status:
             pass
-
-
+    elif send_type == "update":
+        email_title = "Change your Mooc_Online Account Email"
+        email_body = "This is your email update verify code:{0}".format(random_str)
+        send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
+        if send_status:
+            pass
 
 
 def generate_random_str(random_length=8):

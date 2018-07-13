@@ -12,7 +12,7 @@ function sendCodeChangeEmail($btn){
         cache: false,
         type: "get",
         dataType:'json',
-        url:"/users/sendemail_code/",
+        url:"/users/update_email/",
         data:$('#jsChangeEmailForm').serialize(),
         async: true,
         beforeSend:function(XMLHttpRequest){
@@ -50,7 +50,7 @@ var verify = verifyDialogSubmit(
         cache: false,
         type: 'post',
         dataType:'json',
-        url:"/users/update_email/ ",
+        url:"/users/sendemail_code/ ",
         data:$('#jsChangeEmailForm').serialize(),
         async: true,
         beforeSend:function(XMLHttpRequest){
@@ -90,10 +90,10 @@ $(function(){
             data:$('#jsResetPwdForm').serialize(),
             async: true,
             success: function(data) {
-                if(data.password1){
-                    Dml.fun.showValidateError($("#pwd"), data.password1);
-                }else if(data.password2){
-                    Dml.fun.showValidateError($("#repwd"), data.password2);
+                if(data.new_password){
+                    Dml.fun.showValidateError($("#pwd"), data.new_password);
+                }else if(data.confirm_password){
+                    Dml.fun.showValidateError($("#repwd"), data.confirm_password);
                 }else if(data.status == "success"){
                     Dml.fun.showTipsDialog({
                         title:'提交成功',
@@ -171,7 +171,7 @@ $(function(){
                 if(data.nick_name){
                     _showValidateError($('#nick_name'), data.nick_name);
                 }else if(data.birday){
-                   _showValidateError($('#birth_day'), data.birday);
+                   _showValidateError($('#birth_day'), data.birthday);
                 }else if(data.address){
                    _showValidateError($('#address'), data.address);
                 }else if(data.status == "failure"){

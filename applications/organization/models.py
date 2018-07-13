@@ -29,6 +29,7 @@ class CourseOrg(models.Model):
                                     ("company", "Company"), ("university", "University"), ("individual", "Individual")))
     student_num = models.IntegerField(default=0, verbose_name="student_num")
     course_num = models.IntegerField(default=0, verbose_name="course_num")
+    tag = models.CharField(default="World Class", max_length=20, verbose_name="organization_tag")
 
     add_time = models.DateTimeField(default=datetime.now)
 
@@ -66,3 +67,6 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_course_nums(self):
+        return self.course_set.all().count()

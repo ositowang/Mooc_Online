@@ -20,12 +20,17 @@ class UserProfile(AbstractUser):
     def __str__(self):
         return self.username
 
+    def unread_nums(self):
+        from operation.models import UserMessage
+        return UserMessage.objects.filter(user=self.id, has_read=False).count()
+
 
 # Email Verify code model
 class EmailVerifyRecord(models.Model):
     code = models.CharField(max_length=20, verbose_name="verify_code")
     email = models.EmailField(max_length=50, verbose_name="user_email")
-    send_type = models.CharField(choices=(("register", "New_User"), ("forget", "Forget_Password")), max_length=10)
+    send_type = models.CharField(
+        choices=(("register", "New_User"), ("forget", "Forget_Password"), ("update", "Update_Email")), max_length=20)
     send_time = models.DateTimeField(default=datetime.now)
 
     class Meta:
@@ -47,3 +52,6 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "banner"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.title
