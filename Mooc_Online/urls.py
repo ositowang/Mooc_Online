@@ -20,7 +20,7 @@ from django.views.static import serve
 import xadmin
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView, LogoutView, \
     IndexView
-from Mooc_Online.settings import MEDIA_ROOT, STATIC_ROOT
+from Mooc_Online.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -51,7 +51,10 @@ urlpatterns = [
 
     # Configure the uploaded files path url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT}),
+    # url(r'^static/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT}),
+
+    # Ueditor Url
+    url(r'^ueditor/', include('DjangoUeditor.urls')),
 
 ]
 # Global 404

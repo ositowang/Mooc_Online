@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}公开课列表 - 慕学在线网{% endblock %}
+{% block title %}Catalog - Mooc_Online{% endblock %}
 {% load staticfiles %}
-{% block custom_bread %}
+{% block custom_crumbs %}
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>课程机构</li>
+                <li><a href="{% url 'index' %}">Home</a>></li>
+                <li>Courses</li>
             </ul>
         </div>
     </section>
@@ -18,9 +18,9 @@
                 <div class="left layout">
                     <div class="head">
                         <ul class="tab_header">
-                            <li {% if sort == "" %}class="active"{% endif %}><a href="?sort=">最新 </a></li>
-                            <li {% if sort == "hot" %}class="active"{% endif %}><a href="?sort=hot">最热门</a></li>
-                            <li {% if sort == "students" %}class="active"{% endif %}><a href="?sort=students">参与人数</a>
+                            <li {% if sort == "" %}class="active"{% endif %}><a href="?sort=">Latest </a></li>
+                            <li {% if sort == "hot" %}class="active"{% endif %}><a href="?sort=hot">Hottest</a></li>
+                            <li {% if sort == "students" %}class="active"{% endif %}><a href="?sort=students">Most Liked</a>
                             </li>
                         </ul>
                     </div>
@@ -37,12 +37,12 @@
                                             <a href="{% url 'course:course_detail' course.id %}">
                                                 <h2>{{ course.name }}</h2>
                                             </a>
-                                            <span class="fl">时长：<i class="key">{{ course.learn_time }}</i></span>
-                                            <span class="fr">学习人数：{{ course.students_num }}&nbsp;&nbsp;</span>
+                                            <span class="fl">Duration：<i class="key">{{ course.learn_time }}</i></span>
+                                            <span class="fr">Students：{{ course.students_num }}&nbsp;&nbsp;</span>
                                         </div>
                                         <div class="bottom">
                                             <a href="{% url 'course:course_detail' course.id %}"><span
-                                                    class="fl">来自{{ course.course_org.name }}</span></a>
+                                                    class="fl">From&nbsp{{ course.course_org.name }}</span></a>
                                             <span class="star fr  notlogin
                                         " data-favid="15">
                                         {{ course.fav_num }}
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="right layout">
-                    <div class="head">热门课程推荐</div>
+                    <div class="head">You may also like</div>
                     <div class="group_recommend">
                         {% for hot_course in hot_courses %}
                             <dl>
@@ -92,7 +92,7 @@
                                 </dt>
                                 <dd>
                                     <a target="_blank" href=""><h2>{{ hot_course.name }}</h2></a>
-                                    <span class="fl">难度：<i class="key">{{ hot_course.get_degree_display }}</i></span>
+                                    <span class="fl">Degree：<i class="key">{{ hot_course.get_degree_display }}</i></span>
                                 </dd>
                             </dl>
 

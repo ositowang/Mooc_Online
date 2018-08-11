@@ -234,6 +234,7 @@ class TeacherListView(View):
         all_teachers = Teacher.objects.all()
         # Sort the result by student numbers and course numbers
         sort = request.GET.get('sort', "")
+        teacher_num = all_teachers.count()
 
         # Search by Teacher
         search_keywords = request.GET.get('keywords', "")
@@ -256,7 +257,8 @@ class TeacherListView(View):
 
         teachers = p.page(page)
         return render(request, "teachers-list.html",
-                      {"all_teachers": teachers, "sorted_teacher": sorted_teacher, "sort": sort})
+                      {"all_teachers": teachers, "sorted_teacher": sorted_teacher, "sort": sort,
+                       'teacher_num': teacher_num})
 
 
 class TeacherDetailView(View):
